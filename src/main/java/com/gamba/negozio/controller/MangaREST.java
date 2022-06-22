@@ -58,6 +58,12 @@ public class MangaREST {
         return new ResponseEntity<Manga>(updManga, HttpStatus.OK);
     }
 
+    @PutMapping("/update/{id}/{score}")
+    public ResponseEntity<Manga> updateScoreManga(@PathVariable("id") long id, @PathVariable("score") double score){
+        service.updateScoreManga(id, score);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     @Transactional
     public ResponseEntity<Serie> deleteSerie(@PathVariable("id") Long id){

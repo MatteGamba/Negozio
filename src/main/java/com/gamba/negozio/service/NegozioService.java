@@ -5,7 +5,6 @@ import com.gamba.negozio.entities.Manga;
 import com.gamba.negozio.entities.Serie;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface NegozioService {
 
@@ -40,5 +39,9 @@ public interface NegozioService {
     List<Game> orderGameByScore();
     List<Serie> orderSerieByScore();
     List<Manga> orderMangaByScore();
+
+    void updateScoreGame(long id, double score);
+    void updateScoreManga(long id, double score);
+    void updateScoreSerie(long id, double score);
 
 }

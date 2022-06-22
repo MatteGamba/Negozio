@@ -56,6 +56,12 @@ public class GameREST {
         return new ResponseEntity<Game>(updGame, HttpStatus.OK);
     }
 
+    @PutMapping("/update/{id}/{score}")
+    public ResponseEntity<Game> updateScoreGame(@PathVariable("id") long id, @PathVariable("score") double score){
+        service.updateScoreGame(id, score);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     @Transactional
     public ResponseEntity<Game> deleteGame(@PathVariable("id") Long id){
@@ -74,6 +80,7 @@ public class GameREST {
         List<Game> gameScore = service.orderGameByScore();
         return new ResponseEntity<List<Game>>(gameScore, HttpStatus.OK);
     }
+
 
 
 

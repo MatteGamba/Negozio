@@ -1,5 +1,6 @@
 package com.gamba.negozio.controller;
 
+import com.gamba.negozio.entities.Game;
 import com.gamba.negozio.entities.Manga;
 import com.gamba.negozio.entities.Serie;
 import com.gamba.negozio.service.NegozioService;
@@ -55,6 +56,12 @@ public class SerieREST {
     public ResponseEntity<Serie> updateSerie(@RequestBody Serie serie){
         Serie updSerie = service.updSerie(serie);
         return new ResponseEntity<Serie>(updSerie, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}/{score}")
+    public ResponseEntity<Serie> updateScoreSerie(@PathVariable("id") long id, @PathVariable("score") double score){
+        service.updateScoreSerie(id, score);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

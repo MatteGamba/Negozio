@@ -150,7 +150,7 @@ public class NegozioServiceImpl implements NegozioService{
     public List<Game> orderGameByPrice() {
         List<Game> games = gameRepo.findAll();
         return games.stream()
-                .sorted(Comparator.comparing(Game::getPrice))
+                .sorted(Comparator.comparing(Game::getPrice).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -158,7 +158,7 @@ public class NegozioServiceImpl implements NegozioService{
     public List<Serie> orderSerieByPrice() {
         List<Serie> series = serieRepo.findAll();
         return series.stream()
-                .sorted(Comparator.comparing(Serie::getPrice))
+                .sorted(Comparator.comparing(Serie::getPrice).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -166,29 +166,53 @@ public class NegozioServiceImpl implements NegozioService{
     public List<Manga> orderMangaByPrice() {
         List<Manga> mangas = mangaRepo.findAll();
         return mangas.stream()
-                .sorted(Comparator.comparing(Manga::getPrice))
+                .sorted(Comparator.comparing(Manga::getPrice).reversed())
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Game> orderGameByScore() {
         List<Game> games = gameRepo.findAll();
-        return games.stream().sorted(Comparator.comparing(Game::getScore))
+        return games.stream().sorted(Comparator.comparing(Game::getScore).reversed())
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Serie> orderSerieByScore() {
         List<Serie> series = serieRepo.findAll();
-        return series.stream().sorted(Comparator.comparing(Serie::getScore))
+        return series.stream().sorted(Comparator.comparing(Serie::getScore).reversed())
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Manga> orderMangaByScore() {
         List<Manga> mangas = mangaRepo.findAll();
-        return mangas.stream().sorted(Comparator.comparing(Manga::getScore))
+        return mangas.stream().sorted(Comparator.comparing(Manga::getScore).reversed())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateScoreGame(long id, double score) {
+        Game game = gameRepo.findGameById(id)
+                .orElseThrow(()-> new GameNotFoundException(String.valueOf(id)));
+        game.setScore(score);
+        gameRepo.save(game);
+    }
+
+    @Override
+    public void updateScoreManga(long id, double score) {
+        Manga manga = mangaRepo.findMangaById(id)
+                .orElseThrow(()-> new MangaNotFoundException(String.valueOf(id)));
+        manga.setScore(score);
+        mangaRepo.save(manga);
+    }
+
+    @Override
+    public void updateScoreSerie(long id, double score) {
+        Serie serie = serieRepo.findSerieById(id)
+                .orElseThrow(()-> new SerieNotFoundException(String.valueOf(id)));
+        serie.setScore(score);
+        serieRepo.save(serie);
     }
 
 }
