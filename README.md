@@ -8,4 +8,4 @@ Classic CRUD - FindById - FindByTitle - OrderByPrice - OrderByScore -UpdateScore
 
 JpaRepository
 
-Link with an angular application via CorseFunction.
+Link with an angular application via CorseFunction : https://github.com/DanieleSudosi/ProgettoProva/tree/main/AppDiProvaCazzeggio
