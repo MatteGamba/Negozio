@@ -47,9 +47,9 @@ class GameRestTest {
     @MockBean
     private NegozioService service;
 
-    Game GAME_1 = new Game(2L,"Spider-Man","Insomniac Games","Avventura dinamica","Sony","12 Novembre 2020", 49.99,"Inspired by Marvel","www.game.com/game.jpg");
-    Game GAME_2 = new Game(3L,"Death Stranding","Kojima Productions","Avventura dinamica","Sony","8 novembre 2019", 19.99,"A new game by Kojima","www.game.com/game.jpg");
-    Game GAME_3 = new Game(4L,"Cyberpunk 2077","CD Projekt RED","Action RPG","CD Projekt","10 dicembre 2020", 35.99,"Punk for game","www.game.com/game.jpg");
+    Game GAME_1 = new Game(1L,"Spider-Man","Insomniac Games","Avventura dinamica","Sony","12 Novembre 2020", 49.99,"Inspired by Marvel","www.game.com/game.jpg");
+    Game GAME_2 = new Game(2L,"Death Stranding","Kojima Productions","Avventura dinamica","Sony","8 novembre 2019", 19.99,"A new game by Kojima","www.game.com/game.jpg");
+    Game GAME_3 = new Game(3L,"Cyberpunk 2077","CD Projekt RED","Action RPG","CD Projekt","10 dicembre 2020", 35.99,"Punk for game","www.game.com/game.jpg");
     List<Game> gameList =new ArrayList<>(Arrays.asList(GAME_1,GAME_2,GAME_3));
 
 
@@ -90,7 +90,7 @@ class GameRestTest {
     @Test
     void addGame_succes() throws Exception {
         Game game = Game.builder()
-                .id(5L)
+                .id(4L)
                 .description("Grande Film")
                 .genre("Action")
                 .img("www.game.com/game.jpg")
@@ -117,7 +117,7 @@ class GameRestTest {
     @Test
     void updateGame_success() throws Exception {
         Game updateGame = Game.builder()
-                .id(4L)
+                .id(3L)
                 .description("No Punk for Game")
                 .genre("Quiet RPG")
                 .img("www.gamenew.com/game.jpg")
