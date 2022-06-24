@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan("com.gamba.negozio")
-class GameRestTest {
+public class GameRestTest {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private MockMvc mockMvc;

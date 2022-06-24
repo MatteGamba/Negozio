@@ -19,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,8 +29,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -70,6 +71,47 @@ public class MangaRestTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));
+    }
+
+    @Test
+    void getMangaById_success() throws Exception {
+        Mockito.when(service.getMangaById(MANGA_1.getId())).thenReturn(MANGA_1);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/manga/" + MANGA_1.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", notNullValue()));
+    }
+
+    @Test
+    void addManga_succes() throws Exception {
+        Manga manga = Manga.builder()
+                .id(4L)
+                .title("Tower of God")
+                .mangaka("Kushido Min")
+                .genre("Action")
+                .publisher("Shonen Jump")
+                .pubDate("14 Agosto 2015")
+                .stato("In Corso")
+                .volumi(35)
+                .price(4.99)
+                .description("Fantstic tower battle")
+                .img("www.manga.com/manga.jpg")
+                .score(4.2)
+                .build();
+
+        Mockito.when(service.addManga(manga)).thenReturn(manga);
+        String content = objectWriter.writeValueAsString(manga);
+
+        MockHttpServletRequestBuilder mockRequest =MockMvcRequestBuilders.post("/api/manga/add")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(content);
+
+        mockMvc.perform(mockRequest)
+                .andExpect(status().isCreated())
+                .andExpect(content().json(content));
     }
 
 }
