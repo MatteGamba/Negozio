@@ -44,6 +44,11 @@ public class GameREST {
         return new ResponseEntity<List<Game>>(titleGame, HttpStatus.OK);
     }
 
+    @GetMapping("/total")
+    public int getTotalGame(){
+        return service.getTotalGame();
+    }
+
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<Game> addGame(@RequestBody Game game){
         Game newGame = service.addGame(game);

@@ -44,4 +44,8 @@ public interface NegozioService {
     void updateScoreManga(long id, double score);
     void updateScoreSerie(long id, double score);
 
+    int getTotalGame();
+    int getTotalManga();
+    int getTotalSerie();
+
 }

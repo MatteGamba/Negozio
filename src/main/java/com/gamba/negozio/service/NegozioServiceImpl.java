@@ -215,4 +215,25 @@ public class NegozioServiceImpl implements NegozioService{
         serieRepo.save(serie);
     }
 
+    @Override
+    public int getTotalGame() {
+        List<Game> gameList = getAllGames();
+        int total = gameList.size();
+        return total;
+    }
+
+    @Override
+    public int getTotalManga() {
+        List<Manga> mangaList = getAllMangas();
+        int total = mangaList.size();
+        return total;
+    }
+
+    @Override
+    public int getTotalSerie() {
+        List<Serie> serieList = getAllSeries();
+        int total = serieList.size();
+        return total;
+    }
+
 }

@@ -46,6 +46,11 @@ public class SerieREST {
         return new ResponseEntity<List<Serie>>(titleSerie, HttpStatus.OK);
     }
 
+    @GetMapping("/total")
+    public int getTotalSerie(){
+        return service.getTotalSerie();
+    }
+
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<Serie> addSerie(@RequestBody Serie serie){
         Serie newSerie = service.addSerie(serie);

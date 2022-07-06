@@ -46,6 +46,11 @@ public class MangaREST {
         return new ResponseEntity<List<Manga>>(titleManga, HttpStatus.OK);
     }
 
+    @GetMapping("/total")
+    public int getTotalManga(){
+        return service.getTotalManga();
+    }
+
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<Manga> addManga(@RequestBody Manga manga){
         Manga newManga = service.addManga(manga);
