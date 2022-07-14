@@ -147,6 +147,42 @@ public class NegozioServiceImpl implements NegozioService{
     }
 
     @Override
+    public List<Game> findGameByGenre(String genre) {
+        List<Game> games = gameRepo.findAll();
+        List<Game> gameWithGenre = new ArrayList<>();
+        games.forEach(game -> {
+            if(game.getGenre().toLowerCase().contains(genre.toLowerCase())){
+                gameWithGenre.add(game);
+            }
+        });
+        return gameWithGenre;
+    }
+
+    @Override
+    public List<Serie> findSerieByGenre(String genre) {
+        List<Serie> series = serieRepo.findAll();
+        List<Serie> serieWithGenre = new ArrayList<>();
+        series.forEach(serie -> {
+            if(serie.getGenre().toLowerCase().contains(genre.toLowerCase())){
+                serieWithGenre.add(serie);
+            }
+        });
+        return serieWithGenre;
+    }
+
+    @Override
+    public List<Manga> findMangaByGenre(String genre) {
+        List<Manga> mangas = mangaRepo.findAll();
+        List<Manga> mangaWithGenre = new ArrayList<>();
+        mangas.forEach(manga -> {
+            if(manga.getGenre().toLowerCase().contains(genre.toLowerCase())){
+                mangaWithGenre.add(manga);
+            }
+        });
+        return mangaWithGenre;
+    }
+
+    @Override
     public List<Game> orderGameByPrice() {
         List<Game> games = gameRepo.findAll();
         return games.stream()

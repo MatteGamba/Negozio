@@ -44,6 +44,12 @@ public class GameREST {
         return new ResponseEntity<List<Game>>(titleGame, HttpStatus.OK);
     }
 
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Game>> getGameByGenre(@PathVariable("genre") String genre){
+        List<Game> genreGame = service.findGameByGenre(genre);
+        return new ResponseEntity<List<Game>>(genreGame, HttpStatus.OK);
+    }
+
     @GetMapping("/total")
     public int getTotalGame(){
         return service.getTotalGame();

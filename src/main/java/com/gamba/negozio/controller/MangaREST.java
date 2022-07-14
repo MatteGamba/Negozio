@@ -46,6 +46,12 @@ public class MangaREST {
         return new ResponseEntity<List<Manga>>(titleManga, HttpStatus.OK);
     }
 
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Manga>> getMangaByGenre(@PathVariable("genre") String genre){
+        List<Manga> genreManga = service.findMangaByGenre(genre);
+        return new ResponseEntity<List<Manga>>(genreManga, HttpStatus.OK);
+    }
+
     @GetMapping("/total")
     public int getTotalManga(){
         return service.getTotalManga();

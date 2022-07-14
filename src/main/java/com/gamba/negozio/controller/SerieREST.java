@@ -46,6 +46,12 @@ public class SerieREST {
         return new ResponseEntity<List<Serie>>(titleSerie, HttpStatus.OK);
     }
 
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Serie>> getSerieByGenre(@PathVariable("genre") String genre){
+        List<Serie> genreSerie = service.findSerieByGenre(genre);
+        return new ResponseEntity<List<Serie>>(genreSerie, HttpStatus.OK);
+    }
+
     @GetMapping("/total")
     public int getTotalSerie(){
         return service.getTotalSerie();
